@@ -1,0 +1,84 @@
+1. 게시판 페이징 처리에 필요한 변수 선언
+	- currentPage = 1				//현재 페이지
+	- totalRecord = 23			//총 레코드
+	- pageSize = 10				//한 페이지 당 들어갈 레코드 수
+	- blockSize = 10				//한 블록 당 들어갈 페이지 수
+	
+	* pageSize 만큼 레코드가 나오도록 for문 조절
+	* blockSize 만큼 페이지가 나오도록 for문 조절
+	
+	
+2. 선언한 변수들을 이용하여 다음 변수들 구하기
+	- totalPage = (int)Math.ceil((float)totalRecord/pageSize)			//총 페이지 수
+	- firstPage = currentPage - ((currentPage-1)%blockSize)			//첫 번째 페이지
+	- lastPage = firstPage + blockSize -1						//마지막 페이지
+	
+	* firstPage 부터 lastPage 까지 for문 조절
+	* totalPage 를 적용하여 for문 조절
+
+
+3. 강조효과 및 제약조건 주기
+	* currentPage 에 강조 효과 주기
+	* currentPage 누르면 넘어가도록 처리
+	* block 넘어가도록 처리
+	* 1 과 totalPage 사이에서만 block 이 조절되도록 처리
+	
+
+4. 각 페이지 마다 시작 레코드 수 구하기
+	- firstRecord = totalRecord - ((currentPage - 1) * pageSize)
+	
+	* firstRecord 부터 차례대로 순번 적용
+	* firstRecord 가 0 이하로 되는 부분 처리
+	
+
+5. DB 연동 이후 레코드를 받아오면서 각 페이지마다 List 의 index 를 얻어와야 하는 상황이 발생
+	- curPos = (currentPage - 1) * pageSize					// 각 페이지 당 List 의 시작 index
+	
+	* firstRecord = totalRecord - curPos     로 수정
+	* List 적용하여 레코드 리딩...
+
+
+
+--------------------------------- 완성본 --------------------------------------
+	int currentPage = 1;
+	int totalRecord = 23;
+	int pageSize = 10;
+	int blockSize = 10;
+	
+	int totalPage = (int) Math.ceil((float)totalRecord/pageSize);
+	int firstPage = currentPage - (currentPage-1)%blockSize;
+	int lastPage = firstPage + blockSize - 1;
+	
+	int curPos = (currentPage-1)*pageSize;
+	int firstRecord = totalRecord - curPos;
+
+
+------------------------ 유효성 검사까지 한 완성본 ------------------------------
+	int currentPage = 1;
+
+	if(request.getParameter("currentPage") != null){
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+
+	int totalRecord = 23;
+	int pageSize = 10;
+	int blockSize = 10;
+	
+	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
+	
+	if(currentPage <= 0){
+		currentPage = 1;
+	}else if(currentPage > totalPage){
+		currentPage = totalPage;
+	}
+	
+	int firstPage = currentPage - (currentPage-1)%blockSize;
+	
+	int lastPage = firstPage + blockSize - 1;
+	
+	if(lastPage > totalPage){
+		lastPage = totalPage;
+	}
+	
+	int curPos = (currentPage-1)*pageSize;
+	int firstRecord = totalRecord - curPos;
