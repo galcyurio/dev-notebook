@@ -1,0 +1,21 @@
+--------------------- mybatis 의 목적 ------------------------
+1. 자바 소스에서 SQL 을 분리
+
+2. JDBC 프로그래밍을 캡슐화
+	- <mybatis 객체> SqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("spms.dao.ProjectDAO.update", project);
+		sqlSession.commit();
+	따라서 ~Mapper.xml 에만 집중하면 된다.
+
+--------------------- mybatis 구동 원리 --------------------------
+예) 프로젝트 상세 정보 가져오기
+1. mybatis 의 SqlSession 객체를 준비한다. SELECT 실행을 요청한다.
+
+2. SQL 맵퍼 파일에서 아이디가 "spms.dao.ProjectDAO.update" 인 SQL 문을 찾는다.
+
+3. mybatis는 그 SQL 문을 찾아서 JDBC 드라이버를 사용하여 SQL 문을 실행한다.
+
+4. JDBC에서 리턴한 값을 가지고 값 객체(=value object)를 생성한다.
+
+5. 준비한 값 객체(=VO)를 리턴한다.
