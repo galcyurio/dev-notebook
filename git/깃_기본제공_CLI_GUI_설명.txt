@@ -55,11 +55,11 @@ CLI모드에서 깃 설정
 
 	를 입력하여 로컬과 글로벌의 이름과 이메일을 설정할 수 있다.
 
-	확인하려면 
-	git config -l 
+	확인하려면
+	git config -l
 	을 입력한다.
-	
-	어느 저장소에서든 파일들의 변경 사항들을 그룹 짓고 식별하기 위해, 
+
+	어느 저장소에서든 파일들의 변경 사항들을 그룹 짓고 식별하기 위해,
 	깃에서 사용하는 사용자 이름과 이메일 주소를 로컬 설정과 글로벌 설정에 각각 등록했다.
 
 	config 명령은 깃의 설정을 등록할 때 사용된다.
@@ -127,7 +127,7 @@ GUI 모드에서 체크아웃
 	3. 해당 커밋을 선택하고 SHA1 ID 영역의 commit id 를 복사한다.
 	4. GIt GUI - Branch - Checkout (Ctrl+O)
 	5. Revision Expression 항목에 SHA1 ID 를 붙여넣고 Checkout 버튼 클릭
-	
+
 	다시 돌아가고 싶다면
 	1. Branch - Checkout - Localbranch - master브랜치 선택 - Checkout
 
@@ -135,10 +135,10 @@ GUI 모드에서 체크아웃
 CLI 모드에서 체크아웃
 	git log
 	위 명령어는 Repo 의 이력을 보여준다.
-	
+
 	git checkout 커밋ID
 	git log를 통해 커밋ID 를 확인하고 커밋ID 5자 이상만 입력해 주어도 체크아웃 가능하다.
-	
+
 	다시 master 브랜치로 돌아가려면
 	git checkout master
 
@@ -154,7 +154,7 @@ GUI 모드에서 Reset
 CLI 모드에서 Reset
 	git log
 	로 커밋 ID를 확인하고
-	
+
 	git reset --soft 커밋ID
 	형식으로 할 수 있다.
 
@@ -190,7 +190,7 @@ CLI모드에서 원격저장소 등록하기
 CLI모드에서 원격저장소로 push하기
 	origin 원격저장소에 master 브랜치 push하기
 	git push -u origin master
-	
+
 	-u origin master 라는 파라미터는
 	원격 저장소에 push하거나 pull 할 때 사용하는 기본 branch를 지정하는데 사용
 	어떤 branch가 기본으로 설정되었는지 확인하려면
@@ -258,9 +258,9 @@ Commit it:
 	git commit -m ".gitignore is now working"
 
 ```````
-To undo 
+To undo
 	git rm --cached filename
-, use 
+, use
 	git add filename.
 
 
@@ -269,4 +269,15 @@ To undo
 git push origin :브랜치명
 
 
+---------------------------------- gitconfig 파일 삭제 --------------------------------
+모종의 이유로 gitconfig 파일을 삭제할 경우가 생기게 된다면
+C:\Program Files\Git\mingw64\etc\gitconfig
+에서 삭제한다.
 
+------------------------------- Git 에 저장된 credential.helper 삭제하기 ---------------------------
+1. 관리자 모드로 git bash 나 cmd 를 작동시킨다.
+2. 해당 repo 에 가서
+	git config --system --unset credential.helper
+	git config --global --unset credential.helper
+	git config --local --unset credential.helper
+	를 통해서 credential.helper 를 모두 지워서 인증정보를 삭제시킨다.
