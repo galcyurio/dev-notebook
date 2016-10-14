@@ -36,3 +36,29 @@ SqlSessionFactoryBuilder는 XML설정파일에서 SqlSessionFactory인스턴스�
 String resource = "org/mybatis/example/mybatis-config.xml";
 InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+
+------------------------- mybatis dept 테이블과 emp 테이블 join 하기---------------------
+<mapper namespace="Dept">
+	<resultMap id="deptMap" type="Dept">
+		<id 		column="deptno" 	property="deptno" />
+		<result column="dname" 	property="dname"/>
+		<result column="loc" 		property="loc"/>
+		
+		<collection property="empList" javaType="java.util.List" ofType="Emp">
+			<id 		column="empno" 		property="empno"/>
+			<result 	column="comm" 		property="comm"/>
+			<result 	column="ename" 		property="ename"/>
+			<result 	column="hiredate" 	property="hiredate"/>
+			<result 	column="job" 			property="job"/>
+			<result 	column="mgr" 			property="mgr"/>
+			<result 	column="sal" 			property="sal"/>
+		</collection>
+	</resultMap>
+
+	<select id="selectAll" resultMap="deptMap">
+		SELECT D.DEPTNO AS DEPTNO, DNAME, LOC, COMM, EMPNO, ENAME, HIREDATE, JOB, MGR, SAL
+		FROM DEPT D, EMP E
+		WHERE D.DEPTNO = E.DEPTNO
+	</select>
+</mapper>
