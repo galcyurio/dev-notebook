@@ -1,59 +1,59 @@
-1. °Ô½ÃÆÇ ÆäÀÌÂ¡ Ã³¸®¿¡ ÇÊ¿äÇÑ º¯¼ö ¼±¾ğ
-	- currentPage = 1				//ÇöÀç ÆäÀÌÁö
-	- totalRecord = 23			//ÃÑ ·¹ÄÚµå
-	- pageSize = 10				//ÇÑ ÆäÀÌÁö ´ç µé¾î°¥ ·¹ÄÚµå ¼ö
-	- blockSize = 10				//ÇÑ ºí·Ï ´ç µé¾î°¥ ÆäÀÌÁö ¼ö
-	
-	* pageSize ¸¸Å­ ·¹ÄÚµå°¡ ³ª¿Àµµ·Ï for¹® Á¶Àı
-	* blockSize ¸¸Å­ ÆäÀÌÁö°¡ ³ª¿Àµµ·Ï for¹® Á¶Àı
-	
-	
-2. ¼±¾ğÇÑ º¯¼öµéÀ» ÀÌ¿ëÇÏ¿© ´ÙÀ½ º¯¼öµé ±¸ÇÏ±â
-	- totalPage = (int)Math.ceil((float)totalRecord/pageSize)			//ÃÑ ÆäÀÌÁö ¼ö
-	- firstPage = currentPage - ((currentPage-1)%blockSize)			//Ã¹ ¹øÂ° ÆäÀÌÁö
-	- lastPage = firstPage + blockSize -1						//¸¶Áö¸· ÆäÀÌÁö
-	
-	* firstPage ºÎÅÍ lastPage ±îÁö for¹® Á¶Àı
-	* totalPage ¸¦ Àû¿ëÇÏ¿© for¹® Á¶Àı
+1. ê²Œì‹œíŒ í˜ì´ì§• ì²˜ë¦¬ì— í•„ìš”í•œ ë³€ìˆ˜ ì„ ì–¸
+	- currentPage = 1				//í˜„ì¬ í˜ì´ì§€
+	- totalRecord = 23			//ì´ ë ˆì½”ë“œ
+	- pageSize = 10				//í•œ í˜ì´ì§€ ë‹¹ ë“¤ì–´ê°ˆ ë ˆì½”ë“œ ìˆ˜
+	- blockSize = 10				//í•œ ë¸”ë¡ ë‹¹ ë“¤ì–´ê°ˆ í˜ì´ì§€ ìˆ˜
+
+	* pageSize ë§Œí¼ ë ˆì½”ë“œê°€ ë‚˜ì˜¤ë„ë¡ forë¬¸ ì¡°ì ˆ
+	* blockSize ë§Œí¼ í˜ì´ì§€ê°€ ë‚˜ì˜¤ë„ë¡ forë¬¸ ì¡°ì ˆ
 
 
-3. °­Á¶È¿°ú ¹× Á¦¾àÁ¶°Ç ÁÖ±â
-	* currentPage ¿¡ °­Á¶ È¿°ú ÁÖ±â
-	* currentPage ´©¸£¸é ³Ñ¾î°¡µµ·Ï Ã³¸®
-	* block ³Ñ¾î°¡µµ·Ï Ã³¸®
-	* 1 °ú totalPage »çÀÌ¿¡¼­¸¸ block ÀÌ Á¶ÀıµÇµµ·Ï Ã³¸®
-	
+2. ì„ ì–¸í•œ ë³€ìˆ˜ë“¤ì„ ì´ìš©í•˜ì—¬ ë‹¤ìŒ ë³€ìˆ˜ë“¤ êµ¬í•˜ê¸°
+	- totalPage = (int)Math.ceil((float)totalRecord/pageSize)			//ì´ í˜ì´ì§€ ìˆ˜
+	- firstPage = currentPage - ((currentPage-1)%blockSize)			//ì²« ë²ˆì§¸ í˜ì´ì§€
+	- lastPage = firstPage + blockSize -1						//ë§ˆì§€ë§‰ í˜ì´ì§€
 
-4. °¢ ÆäÀÌÁö ¸¶´Ù ½ÃÀÛ ·¹ÄÚµå ¼ö ±¸ÇÏ±â
+	* firstPage ë¶€í„° lastPage ê¹Œì§€ forë¬¸ ì¡°ì ˆ
+	* totalPage ë¥¼ ì ìš©í•˜ì—¬ forë¬¸ ì¡°ì ˆ
+
+
+3. ê°•ì¡°íš¨ê³¼ ë° ì œì•½ì¡°ê±´ ì£¼ê¸°
+	* currentPage ì— ê°•ì¡° íš¨ê³¼ ì£¼ê¸°
+	* currentPage ëˆ„ë¥´ë©´ ë„˜ì–´ê°€ë„ë¡ ì²˜ë¦¬
+	* block ë„˜ì–´ê°€ë„ë¡ ì²˜ë¦¬
+	* 1 ê³¼ totalPage ì‚¬ì´ì—ì„œë§Œ block ì´ ì¡°ì ˆë˜ë„ë¡ ì²˜ë¦¬
+
+
+4. ê° í˜ì´ì§€ ë§ˆë‹¤ ì‹œì‘ ë ˆì½”ë“œ ìˆ˜ êµ¬í•˜ê¸°
 	- firstRecord = totalRecord - ((currentPage - 1) * pageSize)
-	
-	* firstRecord ºÎÅÍ Â÷·Ê´ë·Î ¼ø¹ø Àû¿ë
-	* firstRecord °¡ 0 ÀÌÇÏ·Î µÇ´Â ºÎºĞ Ã³¸®
-	
 
-5. DB ¿¬µ¿ ÀÌÈÄ ·¹ÄÚµå¸¦ ¹Ş¾Æ¿À¸é¼­ °¢ ÆäÀÌÁö¸¶´Ù List ÀÇ index ¸¦ ¾ò¾î¿Í¾ß ÇÏ´Â »óÈ²ÀÌ ¹ß»ı
-	- curPos = (currentPage - 1) * pageSize					// °¢ ÆäÀÌÁö ´ç List ÀÇ ½ÃÀÛ index
-	
-	* firstRecord = totalRecord - curPos     ·Î ¼öÁ¤
-	* List Àû¿ëÇÏ¿© ·¹ÄÚµå ¸®µù...
+	* firstRecord ë¶€í„° ì°¨ë¡€ëŒ€ë¡œ ìˆœë²ˆ ì ìš©
+	* firstRecord ê°€ 0 ì´í•˜ë¡œ ë˜ëŠ” ë¶€ë¶„ ì²˜ë¦¬
 
 
+5. DB ì—°ë™ ì´í›„ ë ˆì½”ë“œë¥¼ ë°›ì•„ì˜¤ë©´ì„œ ê° í˜ì´ì§€ë§ˆë‹¤ List ì˜ index ë¥¼ ì–»ì–´ì™€ì•¼ í•˜ëŠ” ìƒí™©ì´ ë°œìƒ
+	- curPos = (currentPage - 1) * pageSize					// ê° í˜ì´ì§€ ë‹¹ List ì˜ ì‹œì‘ index
 
---------------------------------- ¿Ï¼ºº» --------------------------------------
+	* firstRecord = totalRecord - curPos     ë¡œ ìˆ˜ì •
+	* List ì ìš©í•˜ì—¬ ë ˆì½”ë“œ ë¦¬ë”©...
+
+
+
+--------------------------------- ì™„ì„±ë³¸ --------------------------------------
 	int currentPage = 1;
 	int totalRecord = 23;
 	int pageSize = 10;
 	int blockSize = 10;
-	
+
 	int totalPage = (int) Math.ceil((float)totalRecord/pageSize);
 	int firstPage = currentPage - (currentPage-1)%blockSize;
 	int lastPage = firstPage + blockSize - 1;
-	
+
 	int curPos = (currentPage-1)*pageSize;
 	int firstRecord = totalRecord - curPos;
 
 
------------------------- À¯È¿¼º °Ë»ç±îÁö ÇÑ ¿Ï¼ºº» ------------------------------
+------------------------ ìœ íš¨ì„± ê²€ì‚¬ê¹Œì§€ í•œ ì™„ì„±ë³¸ ------------------------------
 	int currentPage = 1;
 
 	if(request.getParameter("currentPage") != null){
@@ -63,22 +63,43 @@
 	int totalRecord = 23;
 	int pageSize = 10;
 	int blockSize = 10;
-	
+
 	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
-	
+
 	if(currentPage <= 0){
 		currentPage = 1;
 	}else if(currentPage > totalPage){
 		currentPage = totalPage;
 	}
-	
+
 	int firstPage = currentPage - (currentPage-1)%blockSize;
-	
+
 	int lastPage = firstPage + blockSize - 1;
-	
+
 	if(lastPage > totalPage){
 		lastPage = totalPage;
 	}
-	
+
 	int curPos = (currentPage-1)*pageSize;
 	int firstRecord = totalRecord - curPos;
+
+
+------------------------------ ê°œì„ ëœ í˜ì´ì§• ì²˜ë¦¬ --------------------------------
+````sql
+SELECT *
+  FROM (SELECT *
+          FROM (SELECT ROWNUM AS RNUM,
+                       BOARD_PK,
+                       WRITER,
+                       TITLE,
+                       CONTENT,
+                       REGDATE,
+                       HIT,
+                       IMG
+                  FROM BOARD)
+         WHERE RNUM <= 10)
+ WHERE RNUM >= 5;
+````sql
+
+ ì¿¼ë¦¬ë¬¸ì„ ìœ„ì™€ ê°™ì´ ë‚ ë¦¬ê³  LIST ì—ëŠ” ì“°ì§€ì•ŠëŠ” ë°ì´í„°ëŠ” ë„£ì§€ ì•ŠëŠ”ë‹¤.
+ ê·¸ëŸ¬ë¯€ë¡œ ìœ„ ê³µì‹ì—ì„œ curPos ê³µì‹ì€ í•„ìš”ê°€ ì—†ë‹¤.
