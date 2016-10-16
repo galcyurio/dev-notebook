@@ -1,0 +1,42 @@
+````xml
+<filter>
+	<filter-name>CharacterEncodingFilter</filter-name>
+	<filter-class>com.sds.filter.CharacterEncodingFilter</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>CharacterEncodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+````xml
+
+web.xml 에 위와 같이 적어주고
+
+Filter 클래스를 만든다.
+
+````java
+public class CharacterEncodingFilter implements Filter {
+	FilterConfig config;
+
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+		this.config = config;
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain nextFilter)
+			throws IOException, ServletException {
+		// 서블릿을 실행하기 전에 수행할 작업
+		request.setCharacterEncoding("utf-8");
+
+		nextFilter.doFilter(request, response);
+
+		// 서블릿을 실행한 후에 수행할 작업
+	}
+
+	@Override
+	public void destroy() {
+
+	}
+}
+````java

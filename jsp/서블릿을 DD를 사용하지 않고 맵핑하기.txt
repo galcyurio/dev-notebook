@@ -1,0 +1,4 @@
+@WebServlet("/admin/regist")
+public class RegistServlet extends HttpServlet {
+
+위와 같이 써주면 맵핑 효과가 난다.
