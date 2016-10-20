@@ -1,0 +1,5 @@
+DI(Dependency Injection)
+- 의존성 탈피를 위한 외부 주입
+
+AOP(Aspect Oriented Programming)
+- 관점 지향 프로그래밍
