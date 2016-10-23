@@ -103,3 +103,10 @@ SELECT *
 
  쿼리문을 위와 같이 날리고 LIST 에는 쓰지않는 데이터는 넣지 않는다.
  그러므로 위 공식에서 curPos 공식은 필요가 없다.
+
+````mariadb sql
+ SELECT BOARD_PK, WRITER, TITLE, CONTENT, REGDATE, HIT, IMG
+ 		FROM BOARD
+ ORDER BY BOARD_PK DESC
+ 		LIMIT #{start}, #{pageSize};
+````sql
