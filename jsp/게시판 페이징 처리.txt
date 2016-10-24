@@ -110,3 +110,12 @@ SELECT *
  ORDER BY BOARD_PK DESC
  		LIMIT #{start}, #{pageSize};
 ````sql
+
+
+````sql Oracle
+SELECT *
+  FROM (
+  			SELECT B.*, ROW_NUMBER () OVER (ORDER BY B.BOARD_PK DESC) AS NUM
+			FROM BOARD B)
+ WHERE NUM BETWEEN 1 AND 10;
+````sql
