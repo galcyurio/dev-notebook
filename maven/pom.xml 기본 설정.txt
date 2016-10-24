@@ -1,0 +1,38 @@
+<build>
+		<pluginManagement>
+			<plugins>
+				<!-- maven compiler plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>utf-8</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- maven war plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<warSourceDirectory>webapp</warSourceDirectory>
+					</configuration>
+				</plugin>
+
+				<!-- maven eclipse plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.10</version>
+					<configuration>
+						<wtpversion>2.0</wtpversion>
+						<wtpContextName>/</wtpContextName>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
