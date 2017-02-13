@@ -1,0 +1,5 @@
+My personal choice for this problem is to use iptables to redirect all traffic from port 80 to the upper port (e.g. 8080) the Tomcat is running on.
+
+/sbin/iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
+/sbin/iptables -A INPUT -i eth0 -p tcp --dport 8080 -j ACCEPT
+/sbin/iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
