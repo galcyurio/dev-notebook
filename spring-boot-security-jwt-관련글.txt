@@ -1,0 +1,7 @@
+http://www.svlada.com/jwt-token-authentication-with-spring-boot/
+
+
+
+* Spring Security Architecture
+
+https://spring.io/guides/topicals/spring-security-architecture/
