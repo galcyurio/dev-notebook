@@ -3,3 +3,36 @@ My personal choice for this problem is to use iptables to redirect all traffic f
 /sbin/iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
 /sbin/iptables -A INPUT -i eth0 -p tcp --dport 8080 -j ACCEPT
 /sbin/iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+-----------------------------
+
+톰켓은 기본적으로 8080 포트를 이용하여 통신을 수행하게 됩니다.
+즉 http://192.168.0.1:8080 과 같은 형식으로 접근해야 합니다.
+
+하지만 접근의 편의성을 위해서는 80포트를 사용하는 것이 더욱 편리할 것입니다.
+80 포트를 이용하면 http://192.168.0.1 과 같은 형식으로 접근할 수 있게됩니다.
+
+톰켓 환경설정( usr / local / tomcat / conf / server.xml ) 파일을 수정하여 80포트로 접근하게 설정할 수 있으나 아마 정상적으로 동작하지 않음에 당황하시는 분들도 꽤 될거라 생각됩니다.
+
+리눅스나 유닉스는 1024 이하의 포트(well-known port)들은 일반 유저 권한에서 바인딩 할 수 없도록 되어 있습니다.
+
+보안에 문제가 생길 가능성을 차단하기 위해서 입니다.
+
+톰켓서버는 구동시 tomcat 유저 권한으로 구동되게 됩니다. 물론 root 권한으로 구동되게 한다면 80 포트에 별 문제없이 바인딩하여 통신이 가능합니다. 하지만 톰켓서버가 일반 유저 권한으로 구동되는데는 다 그만한 이유가 있겠지요?
+
+웹을 이용한 해킹을 방지하기 위해서 입니다. tomcat 유저 권한으로 동작하는 톰캣 서버는 공격을 받는다 하더라고 tomcat 유저 권한에 해당하는 부분까지만 접근 가능하기 때문에 root 권한으로 구동되는 것보다는 안전하다고 할 수 있습니다.
+
+이런 문제는 회피하는 가장 좋은 방법은 iptables 를 이용한 포트포워딩 방식을 이용할 수 있습니다.
+
+# vim /etc/sysconfig/iptables
+iptables -t nat -A OUTPUT -d localhost -p tcp --dport 80 -j REDIRECT --to-ports 8080
+iptables -t nat -A OUTPUT -d 192.168.0.1 -p tcp --dport 80 -j REDIRECT --to-ports 8080
+iptables -t nat -A PREROUTING -d 192.168.0.1 -p tcp --dport 80 -j REDIRECT --to-ports 8080
+
+# /etc/rc.d/init.d/iptables restart
+
+빨간색 부분을 웹 서버를 구동할 서버의 IP 주소를 적으시면 됩니다.
+그럼 80으로 접근한 요청을 리눅스 커널단에서 8080으로 포워딩 시켜주게 됩니다.
+
+관련자료
+http://cafe.naver.com/egosproject/29
