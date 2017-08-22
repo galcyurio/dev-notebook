@@ -1,5 +1,8 @@
-- 자바 설치
+- ubuntu 자바 설치
 http://zetawiki.com/wiki/%EC%9A%B0%EB%B6%84%ED%88%AC_Java_8_%EC%84%A4%EC%B9%98
+
+- CentOS 자바 설치
+https://zetawiki.com/wiki/CentOS_JDK_%EC%84%A4%EC%B9%98
 
 - JAVA_HOME 등록
 http://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_$JAVA_HOME_%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98_%EC%84%A4%EC%A0%95

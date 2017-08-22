@@ -1,1 +1,0 @@
-http://www.bogotobogo.com/Java/tutorials/Tomcat7_Ubuntu_14_Install_On_Amazon_EC2.php
