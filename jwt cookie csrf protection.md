@@ -1,11 +1,11 @@
-1. HttpOnly ¿Í secure ¸ğµå·Î cookie ¿¡ ÀúÀåÇÏ¿© https ÇÁ·ÎÅäÄİ·Î ¼­¹ö¿¡ Àü¼ÛÇÑ´Ù.
+1. HttpOnly ì™€ secure ëª¨ë“œë¡œ cookie ì— ì €ì¥í•˜ì—¬ https í”„ë¡œí† ì½œë¡œ ì„œë²„ì— ì „ì†¡í•œë‹¤.
 
-2. ´ëºÎºĞÀÇ CSRF °ø°İÀº origin°ú referrer Çì´õ°¡ ´Ù¸¥°æ¿ì°¡ ¸¹À¸¹Ç·Î ÀÌ Çì´õµéÀ» Ã¼Å©ÇÑ´Ù.
+2. ëŒ€ë¶€ë¶„ì˜ CSRF ê³µê²©ì€ originê³¼ referrer í—¤ë”ê°€ ë‹¤ë¥¸ê²½ìš°ê°€ ë§ìœ¼ë¯€ë¡œ ì´ í—¤ë”ë“¤ì„ ì²´í¬í•œë‹¤.
 
-3. javascript´Â ´Ù¸¥ À¥»çÀÌÆ®ÀÇ cookie ¸¦ ÀĞ¾î³¾ ¼ö ¾øÀ¸¸ç ÀÌ°ÍÀ» ÀÌ¿ëÇÏ¸é CSRF °ø°İÀ» ¸·¾Æ ³¾ ¼ö ÀÖ´Ù.
- ¸ÕÀú javascript ·Î ÀĞÀ» ¼ö ÀÖ´Â cookie¿¡ XSRF-TOKEN ¸¦ ¸¸µé¾î¾ß ÇÑ´Ù.
- ÀÌ cookie ´Â À¯Àú°¡ ·Î±×ÀÎ ÇßÀ» ¶§ ¸¸µé¾îÁ®¾ß ÇÏ¸é ·£´ıÇÏ¿© ¿¹ÃøÇÒ ¼ö ¾ø´Â °ªµéÀÌ Æ÷ÇÔµÇ¾î¾ß ÇÑ´Ù.
- ±×¸®°í ¸ğµç ¿äÃ»¿¡ custom header ¸¦ ¸¸µé¾î °ªÀ¸·Î XSRF-TOKEN À» º¸³»¾ßÇÑ´Ù.
+3. javascriptëŠ” ë‹¤ë¥¸ ì›¹ì‚¬ì´íŠ¸ì˜ cookie ë¥¼ ì½ì–´ë‚¼ ìˆ˜ ì—†ìœ¼ë©° ì´ê²ƒì„ ì´ìš©í•˜ë©´ CSRF ê³µê²©ì„ ë§‰ì•„ ë‚¼ ìˆ˜ ìˆë‹¤.
+ ë¨¼ì € javascript ë¡œ ì½ì„ ìˆ˜ ìˆëŠ” cookieì— XSRF-TOKEN ë¥¼ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
+ ì´ cookie ëŠ” ìœ ì €ê°€ ë¡œê·¸ì¸ í–ˆì„ ë•Œ ë§Œë“¤ì–´ì ¸ì•¼ í•˜ë©´ ëœë¤í•˜ì—¬ ì˜ˆì¸¡í•  ìˆ˜ ì—†ëŠ” ê°’ë“¤ì´ í¬í•¨ë˜ì–´ì•¼ í•œë‹¤.
+ ê·¸ë¦¬ê³  ëª¨ë“  ìš”ì²­ì— custom header ë¥¼ ë§Œë“¤ì–´ ê°’ìœ¼ë¡œ XSRF-TOKEN ì„ ë³´ë‚´ì•¼í•œë‹¤.
 
 
 
@@ -21,4 +21,4 @@ In reality you are still susceptible to XSS, it's just that attacker can't steal
 
 Whether you store your JWT in a localStorage or you store your XSRF-token in not http-only cookie, both can be grabbed easily by XSS. Even your JWT in HttpOnly cookie can be grabbed by an advanced XSS attack like XST METHOD.
 
-So in addition of the Double Submit Cookies method, you must always follow best practices against XSS including escaping contents. This means removing any executable code that would cause the browser to do something you don¡¯t want it to. Typically this means removing //
+So in addition of the Double Submit Cookies method, you must always follow best practices against XSS including escaping contents. This means removing any executable code that would cause the browser to do something you donâ€™t want it to. Typically this means removing //

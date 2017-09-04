@@ -1,14 +1,19 @@
-﻿--------------------- mybatis 의 목적 ------------------------
+﻿# MyBatis
+
+## mybatis 의 목적
+
 1. 자바 소스에서 SQL 을 분리
 
 2. JDBC 프로그래밍을 캡슐화
 	- <mybatis 객체> SqlSession
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("spms.dao.ProjectDAO.update", project);
-		sqlSession.commit();
-	따라서 ~Mapper.xml 에만 집중하면 된다.
+````java
+SqlSession sqlSession = sqlSessionFactory.openSession();
+sqlSession.update("spms.dao.ProjectDAO.update", project);
+sqlSession.commit();
+````
+따라서 ~Mapper.xml 에만 집중하면 된다.
 
---------------------- mybatis 구동 원리 --------------------------
+## mybatis 구동 원리
 예) 프로젝트 상세 정보 가져오기
 1. mybatis 의 SqlSession 객체를 준비한다. SELECT 실행을 요청한다.
 
@@ -20,8 +25,8 @@
 
 5. 준비한 값 객체(=VO)를 리턴한다.
 
-------------------------- mybatis 시작 ------------------------------
-http://www.mybatis.org/mybatis-3/ko/getting-started.html
+## mybatis 시작
+[Official tutorial reference](http://www.mybatis.org/mybatis-3/ko/getting-started.html)
 
 1. 모든 마이바티스 애플리케이션은 SqlSessionFactory 인스턴스를 사용한다.
 SqlSessionFactory인스턴스는 SqlSessionFactoryBuilder를 사용하여 만들수 있다.
@@ -38,7 +43,8 @@ InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
 
-------------------------- mybatis dept 테이블과 emp 테이블 join 하기---------------------
+## mybatis dept 테이블과 emp 테이블 join 하기
+````xml
 <mapper namespace="Dept">
 	<resultMap id="deptMap" type="Dept">
 		<id 		column="deptno" 	property="deptno" />
@@ -62,9 +68,10 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(input
 		WHERE D.DEPTNO = E.DEPTNO
 	</select>
 </mapper>
+````
 
 
---------------------------- mybatis 에서 JNDI 활용하기 ------------------------------
+## mybatis 에서 JNDI 활용하기 
 ````xml
 <environments default="development">
 	<environment id="development">
@@ -74,13 +81,13 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(input
 		</dataSource>
 	</environment>
 </environments>
-````xml
+````
 
 mybatis-config.xml 에서 윗부분을 추가
 
 ````xml
 <property name="data_source" value="java:comp/env/jdbc/mariadb" />
-````xml
+````
 
 이 부분에서 jdbc/mariadb 부분을
 
@@ -89,6 +96,6 @@ mybatis-config.xml 에서 윗부분을 추가
 maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/mariadb"
 password="" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/mvc"
 username="root" />
-````xml
+````
 
 server.xml 의 윗 부분의 name 속성값에 입력해준다.
