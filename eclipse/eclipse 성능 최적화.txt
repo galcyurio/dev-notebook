@@ -12,10 +12,10 @@ https://slipp.net/wiki/pages/viewpage.action?pageId=5177633
 -Xms1024m  
 -Xmx1024m
 
-2. ¼Ò½º ÀÚµ¿ Æúµù ÇØÁ¦ (folding)
+2. ì†ŒìŠ¤ ìë™ í´ë”© í•´ì œ (folding)
 
-3. ÀÚµ¿ µ¿ÀÛÇÏ´Â ÄÚµå ÀÚµ¿¿Ï¼º±â´É ÇØÁ¦ (Java - content Assist - auto activation)
+3. ìë™ ë™ì‘í•˜ëŠ” ì½”ë“œ ìë™ì™„ì„±ê¸°ëŠ¥ í•´ì œ (Java - content Assist - auto activation)
 
-4. Spelling Ã¼Å© ¼³Á¤ ÇØÁ¦
+4. Spelling ì²´í¬ ì„¤ì • í•´ì œ
 
-5. Validation (À¯È¿¼ºÃ¼Å©) ¼³Á¤ ÇØÁ¦
+5. Validation (ìœ íš¨ì„±ì²´í¬) ì„¤ì • í•´ì œ

@@ -1,2 +1,0 @@
-의존 라이브러리에
-tomcat embed jasper 를 넣어주어야 한다.

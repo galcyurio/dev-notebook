@@ -1,7 +1,0 @@
-시스템에 의존적이지 않은 부분만 Export 한다.
-
-- Editor Colors
-- Key maps
-- UI Settings
-
-등등...

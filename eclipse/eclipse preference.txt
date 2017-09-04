@@ -2,12 +2,12 @@ http://eclipsesource.com/blogs/2013/08/13/eclipse-preferences-you-need-to-know/
 
 
 
-**Refresh on Access aka ¡°out of sync with file system¡±
+**Refresh on Access aka Â¡Â°out of sync with file systemÂ¡Â±
 
 refresh-on-accessEclipse offers a few ways to deal with files that have changed outside of Eclipse. 
 It can poll changes or use native OS hooks to refresh them. 
-My favorite is the ¡°Refresh on access¡± option which can be found under ¡°General¡± -> ¡°Workspace¡±. 
-This instructs Eclipse to ¡°press F5¡± automatically when opening a file.
+My favorite is the Â¡Â°Refresh on accessÂ¡Â± option which can be found under Â¡Â°GeneralÂ¡Â± -> Â¡Â°WorkspaceÂ¡Â±. 
+This instructs Eclipse to Â¡Â°press F5Â¡Â± automatically when opening a file.
 
 
 
@@ -18,7 +18,7 @@ Here at EclipseSource we have a very heterogeneous environment.
 This means we work with Macs, Windows machines and Linux machines. 
 So, having a common encoding would be very useful ;). 
 Luckily there is UTF-8 and we can set it as the default. 
-You can find the preference under ¡°General¡± -> ¡°Workspace¡±.
+You can find the preference under Â¡Â°GeneralÂ¡Â± -> Â¡Â°WorkspaceÂ¡Â±.
 
 
 
@@ -26,9 +26,9 @@ You can find the preference under ¡°General¡± -> ¡°Workspace¡±.
 
 print-marginWhen you work in a team you probably have some coding standards. 
 We have some regarding the max characters in a line. 
-While I don¡¯t like auto formatted code I would like to see how long a line is without checking the bottom status bar. 
+While I donÂ¡Â¯t like auto formatted code I would like to see how long a line is without checking the bottom status bar. 
 For this we can add a Print Margin to our text editors that is always visible at the specified length. 
-You can find the preference under ¡°Editors¡± -> ¡°Text Editors¡±.
+You can find the preference under Â¡Â°EditorsÂ¡Â± -> Â¡Â°Text EditorsÂ¡Â±.
 
 
 
@@ -37,9 +37,9 @@ Default Launchers
 By default Eclipse tries to find the associated launchers when you try to shortcut-launch from within a file . 
 However, this is not what I want. 
 I would like Eclipse to always use the launcher that I used the last time. 
-The reasons are that when I¡¯m working on a team project, 
+The reasons are that when IÂ¡Â¯m working on a team project, 
 I usually share the launch configuration and I use it myself all the time. 
-You can change this preference under ¡°Run/Debug¡± -> ¡°Launching¡±.
+You can change this preference under Â¡Â°Run/DebugÂ¡Â± -> Â¡Â°LaunchingÂ¡Â±.
 
 
 
@@ -51,18 +51,18 @@ I found myself switching between those perspectives all the time.
 This was pretty annoying! As you might know, a perspective is nothing more than a collection of views. 
 As a result you can add any view to any perspective. 
 With this, I can use only one perspective for both development and debugging. 
-So, I don¡¯t want Eclipse to ask me every time if I want to open another perspective. 
-You can deactivate this by changing the preference under ¡°Run/Debug¡± -> ¡°Perspectives¡±.
+So, I donÂ¡Â¯t want Eclipse to ask me every time if I want to open another perspective. 
+You can deactivate this by changing the preference under Â¡Â°Run/DebugÂ¡Â± -> Â¡Â°PerspectivesÂ¡Â±.
 
 
 
 **Spell Checking
 
 spell-checkingI do not write emails with Eclipse, do you? 
-I didn¡¯t think so! 
-I write code with Eclipse and while writing code I don¡¯t need spell checking. 
+I didnÂ¡Â¯t think so! 
+I write code with Eclipse and while writing code I donÂ¡Â¯t need spell checking. 
 Eclipse has it enabled by default. 
-You can disable it by changing the preference under ¡°General¡± -> ¡°Editors¡± -> ¡°Text Editors¡± -> ¡°Spelling¡±.
+You can disable it by changing the preference under Â¡Â°GeneralÂ¡Â± -> Â¡Â°EditorsÂ¡Â± -> Â¡Â°Text EditorsÂ¡Â± -> Â¡Â°SpellingÂ¡Â±.
 
 
 
@@ -70,42 +70,42 @@ You can disable it by changing the preference under ¡°General¡± -> ¡°Editors¡± -
 
 If you are a Java developer,  you might find it disturbing to always insert semicolons by hand. 
 So, Good News everyone! Eclipse can add the semicolon for us automatically. 
-Just enable the preference under ¡°Java¡± -> ¡°Editor¡± -> ¡°Typing¡±.
+Just enable the preference under Â¡Â°JavaÂ¡Â± -> Â¡Â°EditorÂ¡Â± -> Â¡Â°TypingÂ¡Â±.
 
 
 
 **Java: Templates
 
 templatesDuring development you may find yourself writing the same code over and over again. 
-I¡¯m not talking about application code. 
+IÂ¡Â¯m not talking about application code. 
 If you write application code over and over again read some books about Object-Orientation :). 
-I¡¯m talking about boilerplate code like the method signature of a test method or something similar.
+IÂ¡Â¯m talking about boilerplate code like the method signature of a test method or something similar.
 Luckily you can define templates using the Eclipse preferences that can be accessed using the content assist. 
-You can add new templates under ¡°Java¡± -> ¡°Editor¡± -> ¡°Templates¡±.
+You can add new templates under Â¡Â°JavaÂ¡Â± -> Â¡Â°EditorÂ¡Â± -> Â¡Â°TemplatesÂ¡Â±.
 
 
 
 **Java: Content Assist Favorites
 
-content-assist-favoritesWhen using static utilities like JUnit¡¯s assertions, 
-Guava¡¯s preconditions or Mockito¡¯s mock methods you probably use static imports. 
+content-assist-favoritesWhen using static utilities like JUnitÂ¡Â¯s assertions, 
+GuavaÂ¡Â¯s preconditions or MockitoÂ¡Â¯s mock methods you probably use static imports. 
 If not please consider it ;). 
-The bad thing is that Eclipse doesn¡¯t know anything about these methods and it can¡¯t add it to your content assist. 
+The bad thing is that Eclipse doesnÂ¡Â¯t know anything about these methods and it canÂ¡Â¯t add it to your content assist. 
 But you can add it once and use it over and over again by adding the types you want to use 
-in your content assist favorites under ¡°Java¡± -> ¡°Editor¡± -> Content Assist¡± -> ¡°Favorites¡±.
+in your content assist favorites under Â¡Â°JavaÂ¡Â± -> Â¡Â°EditorÂ¡Â± -> Content AssistÂ¡Â± -> Â¡Â°FavoritesÂ¡Â±.
 
 
 
 Java: Type Filters
 
-type-filtersI use Eclipse¡¯s content assist all the time. 
+type-filtersI use EclipseÂ¡Â¯s content assist all the time. 
 I barely type code except for method, type and variable names. 
-One thing that I always found disturbing was that when I¡¯m developing for example, 
+One thing that I always found disturbing was that when IÂ¡Â¯m developing for example, 
 an SWT application I also see the AWT code in my content assist. 
-Of course I don¡¯t want to mix frameworks. 
+Of course I donÂ¡Â¯t want to mix frameworks. 
 So, I was looking for a way to exclude AWT from my content assist. 
 Eclipse knows about type filters that do exactly this. 
-You can filter out whole packages by adding them under ¡°Java¡± -> ¡°Appearance¡± -> ¡°Type Filters¡±.
+You can filter out whole packages by adding them under Â¡Â°JavaÂ¡Â± -> Â¡Â°AppearanceÂ¡Â± -> Â¡Â°Type FiltersÂ¡Â±.
 
 
 
@@ -115,13 +115,13 @@ save-actionsOne of the coolest things in Eclipse is save actions.
 Are you managing your Java imports manually or do you replace unnecessary whitespaces by hand? 
 If you answered yes, save actions will be your new best friends. 
 You can perform nearly anything when saving a file like organizing imports, removing whitespaces and much more. 
-By default save actions are disabled but you can enable them under ¡°Java¡± -> ¡°Editor¡± -> ¡°Save Actions¡±.
+By default save actions are disabled but you can enable them under Â¡Â°JavaÂ¡Â± -> Â¡Â°EditorÂ¡Â± -> Â¡Â°Save ActionsÂ¡Â±.
 
 
 
 **Web Development: Default Browser
 
 browserEclipse comes with its own browser view that opens by default when you access, for example, an html file or something similar. 
-From my point of view this browser is just trash and can¡¯t be used for web development. 
-As you might know one of the most important things for a web developer are the Firebug/Chrome Developments Tools. You simply can¡¯t use them together with the built-in browser. 
-But you can change how Eclipse handles browser resources under ¡°General¡± -> ¡°Web Browser¡±.
+From my point of view this browser is just trash and canÂ¡Â¯t be used for web development. 
+As you might know one of the most important things for a web developer are the Firebug/Chrome Developments Tools. You simply canÂ¡Â¯t use them together with the built-in browser. 
+But you can change how Eclipse handles browser resources under Â¡Â°GeneralÂ¡Â± -> Â¡Â°Web BrowserÂ¡Â±.
