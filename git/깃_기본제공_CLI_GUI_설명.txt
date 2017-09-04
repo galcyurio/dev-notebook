@@ -264,9 +264,16 @@ To undo
 	git add filename.
 
 
+-------------------------------- remote repository 의 branch 생성하기 ----------------------------
+원칙적으로는 다음과 같음
+	git push <remote-name> <local-branch-name>:<remote-branch-name>
+
+하나를 생략하면 remote branch 와 local branch 의 이름이 같다고 여긴다.
+	git push <remote-name> 
+
 
 ----------------------------------- remote repository 의 branch 삭제하기 --------------------------
-git push origin :브랜치명
+git push origin :<remote-branch-name>
 
 
 ---------------------------------- gitconfig 파일 삭제 --------------------------------
