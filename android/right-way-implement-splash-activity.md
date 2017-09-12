@@ -2,15 +2,14 @@
 [Original link](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)
 
 ## 요약
-````
 구글은 material design spec 에 까지 splash screen 을 올려놓았지만 
 오히려 anti-pattern 이라고 주장하기도 했다.
 
-나는 구글의 주장이 모순된 것이 아니라 단순히 splash screen 을 유저의 시간을 낭비하는 데에 쓰지 말라는 것으로 믿고 있다.
+나는 구글의 주장이 모순된 것이 아니라 단순히 splash screen 을 유저의 시간을 낭비하는 데에 쓰지 말라는 것으로 믿고 있다.  
 구글의 주장은 cold start 의 경우에는 start 시간이 굉장히 오래 걸리는데 이 경우에 그냥 빈 화면을 보여주지 말고 유저의 시간을 낭비시키지 않는 선에서 splash screen 을 보여주자는 것이다.
 
 유튜브가 좋은 예제이다.
-````
+
 ![Youtube](https://www.bignerdranch.com/assets/img/blog/2015/08/youtube_splash.gif)
 
 ## Splash screen 의 구성하는 방법
