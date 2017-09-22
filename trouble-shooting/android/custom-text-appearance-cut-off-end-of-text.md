@@ -8,10 +8,10 @@ Android, Calligraphy, ...
 
 ## Expected behavior
 __Warning: Android preview show me like following image, It is not reflected calligraphy bold textAppearance.__  
-![Expected](images/cut-expected.png)
+![Expected](images/cut-expected.PNG)
 
 ## Actual behavior
-![Actual](images/cut-actual.png)
+![Actual](images/cut-actual.PNG)
 
 ## Issue detail (Reproduction steps, use case)
 I used calligraphy for custom font.  
@@ -65,7 +65,7 @@ __activity_main.java__
 ````
 
 ### __Result__
-![Actual](images/cut-actual.png)
+![Actual](images/cut-actual.PNG)
 
 ## Trouble shooting
 I wonder about this issue so I tried many of solution.  
@@ -82,7 +82,7 @@ __custom_view.xml__
 ````
 
 ### __Result__
-![Expected](images/cut-expected.png)
+![Expected](images/cut-expected.PNG)
 
 ## 2. [Failed] Initial -> Remove __android:textStyle="bold"__ and __android:textAppearance="@style/TextAppearance.Bold"__ from __custom_view.xml__
 __custom_view.xml__
@@ -93,7 +93,7 @@ __custom_view.xml__
 ````
 
 ### __Result__
-![Actual-2](images/cut-actual-2.png)
+![Actual-2](images/cut-actual-2.PNG)
 
 ## 3. [Success] Initial -> Set parent __Theme.AppCompat.Light.NoActionBar__
 __styles.xml__
@@ -106,7 +106,7 @@ __styles.xml__
 ````
 
 ### __Result__
-![Expected](images/cut-expected.png)
+![Expected](images/cut-expected.PNG)
 
 ## Finally
 I realized should not uses multiple TextAppearance even though set the textAppearance programatically like __CustomView.java__.  
