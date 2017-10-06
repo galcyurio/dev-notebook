@@ -1,4 +1,0 @@
-BOARD_PK, WRITER, TITLE, CONTENT
-, TEAM -- > BOARD_PK 를 따라감
-, RANK -- > 첫글은 0
-, DEPTH -- > 첫글은 0
