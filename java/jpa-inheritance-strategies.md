@@ -44,6 +44,14 @@ public abstract class SuperClass {}
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = “SUB_CLASS_TYPE”)
 public abstract class SuperClass {}
+
+@Entity
+@DiscriminatorValue("Sub")
+public class SubClass extends SuperClass {}
+
+@Entity
+@DiscriminatorValue("Sub2")
+public class Sub2Class extends SuperClass {}
 ````
 
 ### 장점
@@ -51,3 +59,32 @@ public abstract class SuperClass {}
 ### 단점
 - 필수적으로 table 에 null 을 사용하게 됨(NOT NULL 제약조건 사용 불가)
 - 데이터의 무결성 이슈가 발생
+
+
+--------------------------------------------------------------------------
+## Joined
+각각의 class 들이 각각의 table 에 매핑된다. 여기까지는 table per class 와 비슷하지만 super class 또한 데이터베이스 table 에 매핑된다. 그리고 이 table 에는 각각의 sub class 들이 공유하는 속성들이 매핑된다.
+
+````java
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class SuperClass {}
+````
+
+### 장점
+- NOT NULL 제약조건 사용 가능
+- 데이터 무결성 이슈에 안전해짐
+### 단점
+- sub class entity의 모든 값을 불러오려면 2개의 table을 join해야 한다.
+
+
+--------------------------------------------------------------------------
+## Choosing a Strategy
+- best performance && polymorphic query && entity relationship 
+  - -> __single table strategy__ && __data integrity issue__
+
+- (data consistency > performance) && polymorphic query && entity relationship 
+  - -> __joined strategy__
+
+- `!`polymorphic query && `!`entity relationship 
+  - -> __table per class__ && __data consistency__ && __expensive polymorphic query__
