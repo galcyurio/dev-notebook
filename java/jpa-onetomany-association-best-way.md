@@ -109,7 +109,7 @@ class PostComment {
 
 
 
-## Just @ManyToOne
+## Just @ManyToOne __(Recommended)__
 `@OneToMany` 을 사용해서 collection 을 매핑할 수 있는 경우는 현실적으로는 child entity 의 row가 적을 때이다. `@OneToMany` 로는 collection 의 size 를 제한할 수 없다.   
 따라서 대부분의 경우 child side에서 `@ManyToOne` annotation 만 쓰면 된다. 그리고 parent entity 에서 collection 을 가져오는 경우에는 `Query`(HQL, JPQL, native SQL, Criteria) 를 쓰면 된다.
 
