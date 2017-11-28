@@ -74,3 +74,20 @@ and we choose __r__ of them, no repetition, order doesn't matter.
 
 반복을 제외한 순열(Permutations without Repetition) 을 구한다음 __r!__ 으로 나눈다.
 
+
+
+
+## 간단한 예제
+1, 2 에서 2가지를 고르는 경우
+
+1. Permutations with Repetition  
+11 22 12 21
+
+1. Permutations without Repetition  
+12 21
+
+1. Combinations without Repetition  
+12
+
+1. Combinations with Repetition  
+12 22 11
