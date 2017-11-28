@@ -41,10 +41,36 @@ no repetitions, order matters.
 - __Repetition is Allowed__: such as coins in your pocket (5,5,5,10,10)
 - __No Repetition__: such as lottery numbers (2,14,15,27,30,33)
 
+
 ### Combinations with Repetition
-Hard to explain.
+순서와 상관없으며 반복하여 선택할 수 있는 경우이다.
+
+1. 고르는 경우와 고르지 않고 넘어간 경우를 그림으로 나타내 본다.(5가지 중 3번 고르는 경우)  
+````
+XOOOXXX
+````
+
+2. 그린 그림을 바탕으로 __O__와 __X__를 다르게 놓을 수 있는 경우의 수를 구한다.
+````
+OXXOOXX
+XXXXOOO
+OXOOXXX
+..
+````
+
+3. 이렇게 되면 7개 중 3개를 반복없이 고르는 경우가 되므로 Combinations without Repetition 공식에서 __n__이 __r+n-1__ 이 된다.  
+
+__formula = (r+n-1)! / r!(n-1)!__
+
 
 ### Combinations without Repetition
 This is how lotteries work. The numbers are drawn one at a time, and if we have the lucky numbers (no matter what order) we win!
 - assume that the order does matter (ie permutations),
 - then alter it so the order does not matter.
+
+__formula = n! / r! (n-r)!__  
+where __n__ is the number of things to choose from,
+and we choose __r__ of them, no repetition, order doesn't matter.  
+
+반복을 제외한 순열(Permutations without Repetition) 을 구한다음 __r!__ 으로 나눈다.
+
