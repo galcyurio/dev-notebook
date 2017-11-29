@@ -42,3 +42,13 @@ sum and divide by 2
 
 ## Mode
 A number that appears __most often__ in numbers.
+
+
+## Weighted mean
+sum(X*W) / sum(W)
+
+### Example
+````
+X = [1,3,5], W = [2,4,6]
+(1*2)+(3*4)+(5*6) / 2+4+6
+````
