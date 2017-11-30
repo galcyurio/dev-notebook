@@ -12,7 +12,7 @@
 - __Repetition is Allowed__: such as the lock above. It could be "333".
 - __No Repetition__: for example the first three people in a running race. You can't be first and second.
 
-### Permutations with Repetition
+### `Permutations with Repetition`
 choosing __R__ of something that has __N__ different types, the permutations are:
 ````
 N × N × ... (R times)
@@ -29,7 +29,7 @@ where __n__ is the number of things to choose from, and we choose __r__ of them,
 repetition is allowed, and order matters.
 
 
-### Permutations without Repetition
+### `Permutations without Repetition`
 In this case, we have to reduce the number of available choices each time.  
 The formula is:  
 __n! / (n-r)!__  
@@ -42,7 +42,7 @@ no repetitions, order matters.
 - __No Repetition__: such as lottery numbers (2,14,15,27,30,33)
 
 
-### Combinations with Repetition
+### `Combinations with Repetition`
 순서와 상관없으며 반복하여 선택할 수 있는 경우이다.
 
 1. 고르는 경우와 고르지 않고 넘어간 경우를 그림으로 나타내 본다.(5가지 중 3번 고르는 경우)  
@@ -63,7 +63,7 @@ OXOOXXX
 __formula = (r+n-1)! / r!(n-1)!__
 
 
-### Combinations without Repetition
+### `Combinations without Repetition`
 This is how lotteries work. The numbers are drawn one at a time, and if we have the lucky numbers (no matter what order) we win!
 - assume that the order does matter (ie permutations),
 - then alter it so the order does not matter.
