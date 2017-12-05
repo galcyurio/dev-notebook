@@ -38,7 +38,7 @@ n! / r!(n-r)!
 
 여기까지 사용했던 식들을 공식으로 만들어본다.  
 __`P(k out of n) = p^k * (1-p)^(n-k)  *  n! / k!(n-k)!`__  
-__`Number of outcomes we want` * `Probability of each outcome`__
+__`Number of outcomes we want` * `Probability of each outcome`__  
 이것이 바로 기본적인 Binomial Probability 공식이다.
 
 ### Important Summary
