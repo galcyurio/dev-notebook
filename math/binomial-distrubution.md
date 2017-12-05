@@ -47,4 +47,6 @@ __`Number of outcomes we want` * `Probability of each outcome`__
 - The probability of "success" at each trial is constant.
 
 ## Mean, Variance and Standard Deviation
-<!-- TODO:  -->
+- Mean value of X: `μ = np`
+- Variance of X: `σ2 = np(1-p)`
+- Standard Deviation of X: `σ = √(np(1-p))`
