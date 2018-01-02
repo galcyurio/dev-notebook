@@ -1,12 +1,24 @@
 # JPA entity relationship annotations
 __original posts__
-- [@OneToMany](https://howtoprogramwithjava.com/database-relationships-one-to-many/)
-- [@ManyToMany, @OneToOne](https://howtoprogramwithjava.com/database-relationships-many-many-one-one/)
-- [@ManyToOne](https://howtoprogramwithjava.com/hibernate-manytoone-unidirectional-tutorial/)
+- howtoprogramwithjava.com
+  - [@OneToMany](https://howtoprogramwithjava.com/database-relationships-one-to-many/)
+  - [@ManyToMany, @OneToOne](https://howtoprogramwithjava.com/database-relationships-many-many-one-one/)
+  - [@ManyToOne](https://howtoprogramwithjava.com/hibernate-manytoone-unidirectional-tutorial/)
+- hibernate javadoc
+  - [@OneToMany](https://docs.jboss.org/hibernate/jpa/2.1/api/javax/persistence/OneToMany.html)
+  - [@ManyToMany](https://docs.jboss.org/hibernate/jpa/2.1/api/javax/persistence/ManyToMany.html)
+  - [@OneToOne](https://docs.jboss.org/hibernate/jpa/2.1/api/javax/persistence/OneToOne.html)
+  - [@ManyToOne](https://docs.jboss.org/hibernate/jpa/2.1/api/index.html?javax/persistence/OneToMany.html)
+- 자바 ORM 표준 JPA 프로그래밍 - 김영한
 
+## Glossary
+- uni-directional (단방향) 
+- bi-directional (양방향) 
+- multiplicity (다중성) : OneToMany, ManyToMany, OneToOne, ManyToOne
+- owner (of relationship) : bi-directional 관계과 되면 owner 를 정해야 한다.
 
 ## @OneToMany
-- One to Many 조건과 many-valued association 을 정의한다.
+- OnetoMany `multiplicity` 와 many-valued `association` 을 정의한다.
 - bidirectional 관계일 경우 `mappedBy`속성에 관계의 owner인 entity의 field 또는 property를 지정해야 한다.
 - 필요 조건
   - many side가 정말로 필요한가?  
