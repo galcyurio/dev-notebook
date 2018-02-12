@@ -12,21 +12,7 @@ CLI 모드에서의 명령어를 검색하려면
 	git help remote : remote에 대한 내장 html 파일 열기
 	git remote -help : remote에 대한 간단한 명령어 사용법
 
-## 저장소 만들기
-````
-GUI 모드에서 초기화(디렉토리를 저장소로 지정하는 절차)
-Git GUI - Create new Repository
-디렉토리 지정
-````
-
-## GUI 모드에서의 영역설명
-	Unstaged Changes Pane : 언스테이지 변경 영역(좌측 상단)
-	Staged Changed Pane : 스테이지 변경 영역(좌측 하단)
-	Differential Content Pane : 컨텐츠 차이점 영역(우측 상단)
-	Action Pane : 활동 영역(우측 하단)
-
-
-## CLI 모드에서 초기화(디렉토리를 저장소로 지정하는 절차)
+## Git 초기화
 	cmd 창을 열고 해당 디렉토리까지 가서
 	git init
 init는 저장소를 초기화하는 명령어다.
@@ -42,17 +28,7 @@ init는 저장소를 초기화하는 명령어다.
 	.git 디렉토리를 조심해서 관리해야 한다.
 
 
-## 깃 설정(이름과 이메일 등록)
-### GUI모드에서 깃 설정
-1. 초기화 절차를 마친 화면에서 Edit 메뉴의 Options를 선택한다. 설정 화면은 다음과 같은 두 개의 역역으로 구분된다.
-````
-로컬 성정 : 왼쪽, GUI_Workbench 저장소에 한정된 설정
-글로벌 설정 : 오른쪽, 설치된 깃을 사용하는 저장소에 적용되는 설정
-````
-2. 로컬과 글로벌 양쪽에 있는 이름과 이메일을 입력하고 Save 버튼을 누른다.
-
-
-## CLI모드에서 깃 설정
+## CLI모드에서 Git 설정
 	git config --global user.name "your full name"
 	git config --global user.email "your full email"
 	git config --local user.name "your full name"
@@ -74,15 +50,7 @@ init는 저장소를 초기화하는 명령어다.
 	user.name 과 user.email 파라미터는 각 사용자의 이름과 이메일 주소를 기록한다.
 	-l 파라미터로 깃의 모든 설정 값의 목록을 확인할 수 있다.
 
-
-## Add (Unstaged에서 Staged로 넘기기)
-### GUI 모드에서 Add
-	1. 아무 파일이나 만든 다음 우측 하단 Action 영역에서 Rescan 버튼을 누른다.(F5)
-	2. Unstaged changes 영역에 있는 파일명 옆에 있는 아이콘을 클릭하면 Staged changes 영역으로 파일이 이동된다.
-	Ctrl+I 를 누르게 되면 한번에 할 수 있다.
-
-
-### CLI 모드에서 Add
+## Add
 1. content.txt 파일을 만든 뒤 확인하려면
 ````
 git status
@@ -104,20 +72,7 @@ git add *.txt
 
 .gitignore 파일은 수동으로 만들어 준다.
 
-
-## Add 되돌리기(Reset)
-GUI 모드 에서는 좌측 아이콘을 클릭하면 된다.
-````
-git reset 파일이름.확장자
-````
-
 ## Commit
-### GUI 모드에서 Commit
-1. Action 영역에서 Commit Message 를 입력
-2. Commit 클릭
-
-
-### CLI 모드에서 Commit
 ````
 git commit -m "메세지"
 ````
@@ -126,19 +81,6 @@ git commit -m "메세지"
 
 
 ## Check Out
-### GUI 모드에서 체크아웃
-1. Repository - Visualize All Branch History 를 눌러서 gitk 를 실행
-2. gitk 는 저장소에 관한 tagging, reset 등과 같은 다양한 종류의 명령을
-	시각적으로 처리할 수 있는 그래픽 저장소 브라우저이다.
-3. 해당 커밋을 선택하고 SHA1 ID 영역의 commit id 를 복사한다.
-4. GIt GUI - Branch - Checkout (Ctrl+O)
-5. Revision Expression 항목에 SHA1 ID 를 붙여넣고 Checkout 버튼 클릭
-
-	다시 돌아가고 싶다면 <br/>
-	Branch - Checkout - Localbranch - master브랜치 선택 - Checkout
-
-
-### CLI 모드에서 체크아웃
 ````bash
 # Repository 의 이력을 조회한다.
 git log 
@@ -152,14 +94,6 @@ git checkout master
 
 ## Reset
 Reset은 콘텐츠를 되돌릴 수 없는 Checkout 이라고 보면 된다.
-
-### GUI 모드에서 Reset
-````
-gitk 에서 돌아가려는 버전에 우클릭 Reset 하면 된다.
-바로 갱신되지 않으니 새로고침 하면된다.
-````
-
-### CLI 모드에서 Reset
 ````
 git log
 # Commit ID 확인
@@ -193,7 +127,7 @@ git remote : 소스와 목적지를 관리하는 데 사용한다.
 			fetch, push, pull은 remote를 통해 제공된 원격 연결을 이용한다.
 ````
 
-## CLI모드에서 원격저장소 등록하기
+## 원격저장소 등록하기
 1. 해당 저장소 디렉토리로 이동
 2. git remote add <remove_name> <remote_url>
 ````bash
@@ -201,7 +135,7 @@ ex) git remote add origin https://galcyurio@bitbucket.org/galcyurio/online_workb
 ````
 해당 명령어는 url을 원격저장소로 등록하고 origin 이란 별칭을 주는 것이다.
 
-### CLI모드에서 원격저장소로 push하기
+### 원격저장소로 push하기
 ````bash
 # origin 원격저장소에 master 브랜치 push하기
 git push -u origin master
@@ -213,13 +147,12 @@ git push -u origin master
 git push -u
 ````
 
-## CLI모드에서 clone 하기
+## clone 하기
 ````bash
 git clone <repository> <directory>
 ````
 
 origin/HEAD 란 원격저장소의 현재 브랜치의 가장 상위버전을 가리킨다.
-
 
 
 ## log 명령어로 커밋정보 검색하기
@@ -300,7 +233,12 @@ git push <remote-name>
 ````
 
 ## remote repository 의 branch 삭제하기
-	git push origin :<remote-branch-name>
+````bash
+git push origin :<remote-branch-name>
+
+#또는
+git push origin --delete <remote-branch-name>
+````
 
 
 ##  gitconfig 파일 삭제
