@@ -10,7 +10,12 @@ https://www.ibm.com/developerworks/library/l-async/index.html
 `system call`이란 `운영체제의 커널`이 제공하는 `서비스`에 대해 `application`의 요청에 따라 `커널`에 접근하기 위한 인터페이스이다.  
 
 
+## Kernel
+`커널`은 운영 체제의 핵심이 되는 컴퓨터 프로그램이며 시스템의 모든 것은 완전히 통제한다.
+
+
 - 참고 문서
   - [Context switch wiki](https://en.wikipedia.org/wiki/Context_switch)
   - [Context switch ko wiki](https://ko.wikipedia.org/wiki/%EB%AC%B8%EB%A7%A5_%EA%B5%90%ED%99%98)
   - [System call ko wiki](https://ko.wikipedia.org/wiki/%EC%8B%9C%EC%8A%A4%ED%85%9C_%ED%98%B8%EC%B6%9C)
+  - [Kernel ko wiki](https://ko.wikipedia.org/wiki/%EC%BB%A4%EB%84%90_(%EC%BB%B4%ED%93%A8%ED%8C%85))
