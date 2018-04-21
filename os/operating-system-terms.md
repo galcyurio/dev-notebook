@@ -1,5 +1,5 @@
 https://www.ibm.com/developerworks/library/l-async/index.html  
-위 문서에 나오는 관련 용어 설명
+위 문서를 이해하기 위해 OS 관련 용어 정리
 
 ## Context switch
 `하나의 프로세스`가 CPU를 사용중인 상태에서 `다른 프로세스`가 CPU를 사용하도록 하기 위해 `이전의 프로세스`의 상태를 `보관`하고 `새로운 프로세스`의 상태를 `적재`하는 작업이다.  
