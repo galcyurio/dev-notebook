@@ -11,7 +11,7 @@ https://www.ibm.com/developerworks/library/l-async/index.html
 
 
 ## Kernel
-`커널`은 운영 체제의 핵심이 되는 컴퓨터 프로그램이며 시스템의 모든 것은 완전히 통제한다.
+`커널`은 운영 체제의 핵심이 되는 컴퓨터 프로그램이며 시스템의 모든 것을 완전히 통제한다.
 
 
 - 참고 문서
