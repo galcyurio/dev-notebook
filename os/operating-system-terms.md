@@ -21,13 +21,14 @@ https://www.ibm.com/developerworks/library/l-async/index.html
 `mode`를 전환하는 것 자체는 `context switch`이 아니다. 하지만, 운영 체제에 따라서 이 시점에 `context switch`가 발생할 수 있다.
 
 
-## read system call
-POSIX 호환 운영 체제에서 `파일 시스템에 저장된 파일의 데이터에 액세스`해야하는 하는 경우 `read` system call을 사용한다.  
-이 system call은 파일에서 호출자가 지정한 `byte만큼 데이터를 읽고` 호출한 프로세스에서 제공한 `buffer에 저장`한다.
-
 ## POSIX (portable operating system interface)
 운영 체제 간의 호환성을 유지하기 위해 IEEE 컴퓨터 협회가 지정한 표준이다.  
 POSIX는 다양한 Unix계열 OS와 다른 OS들의 소프트웨어 호환을 위하여 CLI shell, utility interface 간의 API를 정의한다.
+
+
+## read system call
+POSIX 호환 운영 체제에서 `파일 시스템에 저장된 파일의 데이터에 액세스`해야하는 하는 경우 `read` system call을 사용한다.  
+이 system call은 파일에서 호출자가 지정한 `byte만큼 데이터를 읽고` 호출한 프로세스에서 제공한 `buffer에 저장`한다.
 
 
 ## select system call
