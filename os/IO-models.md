@@ -16,7 +16,19 @@ I/O가 완료될 때까지 대기하지 않고 `read` system call이 일어나�
 
 
 ## Asynchronous blocking I/O
+non-block I/O 가 구성되고 I/O descriptor에 대한 변화가 있을 때를 확인하기 위해 `blocking select system call` 이 사용된다.  
+`select` call은 하나의 descriptor가 아니라 여러개의 descriptor에 대해 알림을 제공할 수 있다.  
+각각의 descriptor에 대해서 데이터를 쓸 수 있는지(write), 읽을 수 있는지(read) 그리고 에러가 발생했는지에 대해 알림을 요청할 수 있다.
 
+![](https://www.ibm.com/developerworks/library/l-async/figure4.gif)
+
+
+## Asynchronous non-blocking I/O (AIO)
+`read` 요청은 `read`가 성공적으로 초기화되었음을 알리는 반환값을 즉시 반환한다.  
+그리고 application은 `read`가 완료될 때까지 다른 처리를 수행할 수 있다.  
+`read`에 대한 응답이 오면 `signal` 또는 `스레드 기반의 callback`을 생성하여 I/O 트랜잭션을 완료시킬 수 있다.
+
+![](https://www.ibm.com/developerworks/library/l-async/figure5.gif)
 
 
 - 참고 문서
@@ -24,3 +36,4 @@ I/O가 완료될 때까지 대기하지 않고 `read` system call이 일어나�
   - https://www.slideshare.net/unitimes/sync-asyncblockingnonblockingio
   - http://ozt88.tistory.com/20
   - https://nesoy.github.io/articles/2017-01/Synchronized
+  - https://en.wikipedia.org/wiki/Asynchronous_I/O
