@@ -43,3 +43,17 @@ println(map)
 // {1=one, 2=two, 3=three, 4=four, 5=five}
 ````
 
+## import 이름 바꾸기
+````kotlin
+import java.util.stream.IntStream as IStream
+import java.util.stream.LongStream as LStream
+
+fun main(args: Array<String>) {
+    IStream.of(1, 2, 3, 4, 5)
+    LStream.of(1, 2, 3, 4, 5)
+}
+````
+
+
+## kotlin 으로 작성된 언어를 java 코드로 보기
+`Show Kotlin Bytecode` -> Decompile 클릭
