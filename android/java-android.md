@@ -8,7 +8,8 @@ minSdkVersion을 높이면 자바8의 기능들을 대부분 쓸 수 있지만 �
 시간이 굉장히 중요하다면 ThreeTenABP를 고려해보아야 한다.
 
 # Stream
-RxJava를 쓰면 된다.
+- RxJava를 쓰면 된다.
+- [streamsupport](https://github.com/streamsupport/streamsupport), [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API)
 
 # Lambda, Method reference, default and static interface method
 이전까지는 RetroLambda 또는 Jack 툴체인을 사용했지만 Android Studio 3.0 부터는 기본 툴체인에서 모두 지원한다.
