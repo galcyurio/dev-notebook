@@ -106,3 +106,23 @@ docker rmi <image id 또는 name>:<태그>
 # image 모두 삭제
 docker rmi $(docker images -q)
 ````
+
+
+### 이미 실행된 container에 port 할당하기
+https://stackoverflow.com/a/26622041/6686126
+
+1. stop running container
+````
+docker stop test01
+```
+`
+2. commit the container
+````
+docker commit test01 test02
+````
+NOTE: The above, test02 is a new image that I'm constructing from the test01 container.
+
+3. re-run from the commited image
+````
+docker run -p 8080:8080 -td test02
+````
