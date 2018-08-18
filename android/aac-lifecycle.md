@@ -18,6 +18,8 @@ Android Architecture Componenets(이하 AAC)의 컴포넌트 중 하나이며 Ac
 아래에서 만들어볼 것은 다른 클래스에서 Activity의 Lifecycle을 구독하고 있다가 lifecycle 상태가 변경되면 Toast 메세지를 띄워주는 간단한 예제이다.
 또한 Activity에 있는 버튼을 누르면 현재 Activity의 상태를 Toast 메세지로 보여줄 것이다.
 
+완성된 프로젝트는 [여기](https://github.com/galcyurio/android-simple-examples/issues/2)에서 commit 별로 확인할 수 있다.
+
 
 ## 1. 프로젝트 생성
 ![](image/lifecycle-1.PNG)
@@ -112,6 +114,9 @@ $ ./gradlew app:dependencies
 ````
 
 ## 3. MainActivity에 showCurrentLifecycle() 함수 추가하기
+내부 멤버변수로 가지고 있는 lifecycle을 통해서 현재 lifecycle state를 확인할 수 있다.  
+이렇게 확인한 생명주기 상태를 토스트로 띄워주는 함수를 하나 추가한다.
+
 ````kotlin
 class MainActivity : AppCompatActivity() {
 
@@ -185,9 +190,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
 ## 6. MainPresenter 만들기
 MainContract.Presenter에 LifecycleObserver를 상속받게 하고 MainPresenter에서 MainContract.Presenter를 상속한다.
-> MainPresenter에서 직접 상속받고 MainActivity에서 타입을 MainContract.Presenter가 아닌 MainPresenter로 바꾸어도 된다.
+> MainPresenter에서 직접 LifecycleObserver를 상속받고 MainActivity에서 타입을 MainContract.Presenter가 아닌 MainPresenter로 바꾸어도 된다.
 
-<!-- TODO: Presenter에 라이프 사이클 관련 설명 추가 -->
+그 다음 `onCreate()`에서 presenter를 생성하고 MainActivity의 `lifecycle.addObserver(presenter)`를 통해 MainPresenter에서도 생명주기를 다룰 수 있도록 만든다.
 
 ````kotlin
 interface MainContract {
@@ -213,3 +218,39 @@ class MainPresenter(
 ) : MainContract.Presenter {
 }
 ````
+
+
+## 7. MainPresenter에서 MainActivity의 lifecycle이 변경될 때마다 토스트 메세지 띄우기
+`MainActivity(LifecycleOwner)`의 lifecycle에 observer로 `MainPresenter(LifecycleObserver)`를 추가했으므로 이제부터는 MainPresenter에서 MainActivity의 생명주기를 관찰할 수 있다.
+
+> Activity에 `LifecycleOwner`를 상속받게 만든적이 없는데 어떻게 된걸까?  
+그 이유는 support library에 있다.   
+Activity를 만들 때 일반 `android.app.Activity`를 상속받지 않고 `android.support.v7.app.AppCompatActivity`를 상속받아서 만들게 되면 내부적으로 `LifecycleOwner`를 상속받은 `SupportActivity`를 super class로 가지게 된다.  
+그리고 support library의 내부 코드를 살펴보면 Lifecycle 컴포넌트에 관련된 코드를 발견할 수 있다.
+
+LifecycleObserver 측에서는 `@OnLifecycleEvent` 어노테이션을 이용해 손쉽게 다음과 같이 처리할 수 있다.
+
+````kotlin
+class MainPresenter(
+    private val view: MainContract.View
+) : MainContract.Presenter {
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+    fun onAny() {
+        view.showCurrentLifecycle()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun subscribe() {
+        /* 구독 시작, 커넥션 연결 */
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun unsubscribe() {
+        /* 구독 해제, 커넥션 끊기 */
+    }
+}
+````
+
+> 실제로 작동을 해보면 알겠지만 토스트 메세지에 나오는 Lifecycle의 State 정보가 조금 이상하다는 걸 느낄것이다. 현재로써는 State 정보는 신뢰할 수 없다.  
+하지만 @OnLifecycleEvent 를 통해 호출되는 함수들은 제대로된 해당 이벤트 때 실행되므로 신뢰할 수 있으니 State 정보는 버그가 해결될 때가지 사용하지 말고 `Lifecycle.Event`을 사용하도록 하자.
