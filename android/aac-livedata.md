@@ -45,13 +45,13 @@
 
 
 ## 1. 프로젝트 생성
-![](image/livedata-1.png)
+![](image/livedata-1.PNG)
 
-![](image/livedata-2.png)
+![](image/livedata-2.PNG)
 
-![](image/livedata-3.png)
+![](image/livedata-3.PNG)
 
-![](image/livedata-4.png)
+![](image/livedata-4.PNG)
 
 프로젝트를 만들면 포함되는 `support library`에서 `livedata`에 의존하고 있기 때문에 `build.gradle`에 따로 의존성을 추가해주지 않아도 된다.
 
@@ -166,7 +166,7 @@ viewModel.number.observe(this, Observer {
 ## 7. 실행
 여기까지 하고 앱을 실행시켜 보면 다음과 같이 보일 것이다.
 
-![](image/livedata-5.png)
+![](image/livedata-5.PNG)
 
 
 이제 UP, DOWN 버튼을 눌러보면 텍스트뷰가 바로바로 바뀌는 것을 볼 수 있을 것이다.  
