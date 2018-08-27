@@ -54,10 +54,6 @@ ext {
 
             okhttp          : '3.10.0',
             retrofit        : '2.4.0',
-
-            junit           : '4.12',
-            testRunner      : '1.0.2',
-            espresso        : '3.0.2',
     ]
 
     deps = [
@@ -67,9 +63,6 @@ ext {
             retrofit           : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             retrofitJackson    : "com.squareup.retrofit2:converter-jackson:$versions.retrofit",
             retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-
-            junit              : "junit:junit:$versions.junit",
-            okhttpMockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.okhttp"
     ]
 }
 
@@ -77,8 +70,6 @@ dependencies {
     implementation deps.kotlin
     implementation deps.retrofit, deps.retrofitJackson, deps.retrofitRxJava
     compile deps.rxJava
-
-    testImplementation deps.junit, deps.okhttpMockWebServer
 }
 ````
 
