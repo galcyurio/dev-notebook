@@ -52,7 +52,6 @@ ext {
             kotlin          : '1.2.51',
             rxJava          : '2.1.14',
 
-            okhttp          : '3.10.0',
             retrofit        : '2.4.0',
     ]
 
