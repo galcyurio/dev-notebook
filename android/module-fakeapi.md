@@ -23,12 +23,11 @@
 `안드로이드 라이브러리`가 아닌 `자바 라이브러리`로 진행할 예정이니 반드시 안드로이드 스튜디오를 이용해서 만들 필요는 없고 이클립스나 Intellij를 이용해도 좋다.  
 하지만 여기서는 바로 app 모듈에 적용할 예정이니 안드로이드 스튜디오를 이용할 것이다.
 
-해당 모듈은 4주차에 3조에서 fake API 를 통해 안드로이드 앱 구현에 사용했던 Kotlin 라이브러리다.   
 완성된 모듈은 [여기](https://github.com/galcyurio/slipp-board-android)에서 찾아볼 수 있고 커밋별로 보려면 [여기](https://github.com/galcyurio/slipp-board-android/issues/8)를 클릭하면 된다.
 
 ## 1. 자바 라이브러리 만들기
 안드로이드에 종속성을 가지고 있다면 안드로이드 라이브러리를 만들어야 겠지만 지금과 같이 단지 HTTP 요청만 보내는 모듈이라면 `자바 라이브러리`로 만드는 것을 추천한다.  
-이제부터 만들 라이브러리는 편의상 `FakeApi` 모듈 이라도 부른다.
+이제부터 만들 라이브러리는 편의상 `FakeApi` 모듈이라고 부른다.
 
 **File -> New -> New Module**
 
@@ -38,6 +37,8 @@
 
 > 위 그림에서 에러는 모듈이 이미 만들어져 있어서 발생한 에러이니 무시하자.
 
+만약 안드로이드 프로젝트에서 만들면 자동으로 `settings.gradle` 파일에 include 까지 해줄 것이다.
+
 ## 2. 종속성 추가
 필자의 라이브러리에서는 kotlin-std-lib, okhttp, retrofit, jackson, rxjava 등등의 라이브러리를 종속성으로 가지고 있지만 이 라이브러리를 사용하는 쪽에서는 RxJava만 있으면 되기 때문에 rxjava만 `compile`로 두고 나머지는 모두 `implementation`으로 감추었다.
 
@@ -46,6 +47,32 @@
 > implementation은 provided(compileOnly)와는 다르다.
 
 ````groovy
+ext {
+    versions = [
+            kotlin          : '1.2.51',
+            rxJava          : '2.1.14',
+
+            okhttp          : '3.10.0',
+            retrofit        : '2.4.0',
+
+            junit           : '4.12',
+            testRunner      : '1.0.2',
+            espresso        : '3.0.2',
+    ]
+
+    deps = [
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+            rxJava             : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+            retrofit           : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            retrofitJackson    : "com.squareup.retrofit2:converter-jackson:$versions.retrofit",
+            retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+            junit              : "junit:junit:$versions.junit",
+            okhttpMockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.okhttp"
+    ]
+}
+
 dependencies {
     implementation deps.kotlin
     implementation deps.retrofit, deps.retrofitJackson, deps.retrofitRxJava
@@ -55,3 +82,129 @@ dependencies {
 }
 ````
 
+## 3. noarg 플러그인 적용
+Jackson과 같은 라이브러리 또는 일부 라이브러리에서는 데이터 클래스에 기본적으로 **매개변수가 하나도 없는 default constructor**(이하 기본 생성자)가 있어야 한다.
+하지만 Kotlin은 생성자의 매개변수에 모두 초기값을 정해주어야 기본 생성자가 만들어진다.
+이렇게하면 초기값으로 null을 주던지 다른 값을 통해 미리 초기화해두어야 하기 때문에 귀찮기도 하고 원하는 바가 아닐 수있다.
+따라서 JetBrains사에서는 미리 compiler plugin으로 noarg-plugin을 지원한다.
+
+적용방법은 [여기](https://www.slipp.net/wiki/pages/viewpage.action?pageId=30770676)를 참조하자.
+
+## 4. 구현
+모듈을 만드는 것에 집중하기 위해 구현체들은 자세하게 설명하지 않겠다.
+해당 구현체에 대해 알아보려면 `Retrofit`, `retrofit-jackson-converter`, `retrofit-rxjava-adapter`에 관해서 알아보기 바란다.
+
+- Misc.kt
+````kotlin
+internal annotation class NoArgsConstructor
+````
+
+- Post.kt
+````kotlin
+@NoArgsConstructor
+data class Post(
+    val title: String,
+    val body: String = "",
+
+    val id: Long? = 0,
+    val userId: Long? = 0
+)
+````
+
+- Comment.kt
+````kotlin
+@NoArgsConstructor
+data class Comment(
+    val email: String,
+    val name: String,
+    val body: String = "",
+
+    val id: Long = 0,
+    val postId: Long = 0
+)
+````
+
+- FakeApi.kt
+````kotlin
+interface FakeApi {
+
+    @GET("posts")
+    fun findPosts(): Single<List<Post>>
+
+    @GET("posts/{id}")
+    fun findPostById(@Path("id") id: Long): Single<Post>
+
+    @GET("posts/{id}/comments")
+    fun findPostComments(@Path("id") id: Long): Single<List<Comment>>
+
+    @GET("posts")
+    fun findPostsByUserId(@Query("userId") userId: Long): Single<List<Post>>
+
+    @POST("posts")
+    fun savePost(@Body post: Post): Completable
+
+    @PUT("posts/{id}")
+    fun updatePost(@Path("id") id: Long, @Body post: Post): Completable
+
+    @DELETE("posts/{id}")
+    fun deletePost(@Path("id") id: Long): Completable
+}
+````
+
+라이브러리 사용자를 위한 함수 추가
+- Functions.kt
+````kotlin
+const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+
+fun fakeApi(): FakeApi {
+    return Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(JacksonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build()
+        .create(FakeApi::class.java)
+}
+````
+
+## 5. app 모듈에서 사용하기
+먼저 모듈을 사용하려면 아래와 같이 해당 모듈에 대한 의존성을 app 모듈에 추가해주어야 한다.
+
+````groovy
+/* app/build.gradle */
+
+dependencies {
+    implementation project(':FakeApi')
+}
+````
+
+이렇게 추가한 뒤에 app 모듈에서 다음과 같이 사용이 가능하다.
+
+````kotlin
+class ListActivity : AppCompatActivity() {
+    private val fakeApi: FakeApi by lazy { fakeApi() }
+
+    // ...
+
+    fun findPosts() {
+        fakeApi.findPosts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { showLoading() }
+            .doFinally { hideLoading() }
+            .subscribeBy(
+                onSuccess = { adapter.add(it) },
+                onError = {
+                    showErrorToast()
+                    Log.e(javaClass.name, "findPosts onError", it)
+                }
+            )
+            .addTo(disposable)
+    }
+
+    // ...
+}
+````
+
+----------------------------------------------------------------------
+글을 모두 작성하고 보니 모듈에 집중할 수 있는 예제는 아닌듯 하다.  
+하지만 모듈을 만들어서 분리하는게 중요하지 이 예제의 구현체가 중요한게 아니니 간단한 모듈을 먼저 만들어 보기를 추천한다.
