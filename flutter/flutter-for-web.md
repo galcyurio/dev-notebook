@@ -21,4 +21,13 @@ DOM, Canvas, CSS의 조합을 사용하여 최신 브라우저에서 이식성�
 
 
 ## Getting Started
-TODO
+Flutter 1.5 이상부터 Dart를 컴파일해서 JavaScript를 포함하여 Flutter로 웹을 타겟팅할 수 있습니다.
+flutter_web 미리보기에서 Flutter SDK를 사용하려면 시스템에서 flutter 업그레이드를 실행하여 Flutter를 v1.5.4 이상으로 업그레이드했는지 확인하세요.
+Flutter for web을 적극적으로 개발하려는 경우 불안정한 채널 중 하나에서 실행하는 것이 좋습니다.
+우리의 위키는 [Flutter 채널](https://github.com/flutter/flutter/wiki/Flutter-build-release-channels)과 당신의 필요에 맞는 것을 선택하는 방법을 설명합니다.
+
+
+### Clone the flutter_web source code
+```bash
+git clone https://github.com/flutter/flutter_web.git
+```
