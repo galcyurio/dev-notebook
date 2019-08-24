@@ -20,14 +20,67 @@ DOM, Canvas, CSS의 조합을 사용하여 최신 브라우저에서 이식성�
 * Flutter 모바일 앱에 동적인 컨텐츠를 포함합니다. 기존 모바일 애플리케이션 내에서 동적 컨텐츠 업데이트를 제공하는 확립 된 방법은 정보를 동적으로 로드하고 표시할 수 있는 web view control를 사용하는 것입니다.
 
 
-## Getting Started
+## 시작하기
 Flutter 1.5 이상부터 Dart를 컴파일해서 JavaScript를 포함하여 Flutter로 웹을 타겟팅할 수 있습니다.
 flutter_web 미리보기에서 Flutter SDK를 사용하려면 시스템에서 flutter 업그레이드를 실행하여 Flutter를 v1.5.4 이상으로 업그레이드했는지 확인하세요.
-Flutter for web을 적극적으로 개발하려는 경우 불안정한 채널 중 하나에서 실행하는 것이 좋습니다.
-우리의 위키는 [Flutter 채널](https://github.com/flutter/flutter/wiki/Flutter-build-release-channels)과 당신의 필요에 맞는 것을 선택하는 방법을 설명합니다.
 
+### flutter 설치
+flutter_web을 사용하기 전에 먼저 flutter를 다운로드하고 설치해야 합니다.
+flutter 설치는 아래 페이지를 참고해주세요.
 
-### Clone the flutter_web source code
+[Flutter 설치 공식문서](https://flutter.dev/docs/get-started/install)
+
+### flutter_web 소스코드 clone
 ```bash
 git clone https://github.com/flutter/flutter_web.git
 ```
+
+그리고 `$HOME/.pub-cache/bin` 디렉토리가 `path`에 등록해서 `webdev` 명령어를 터미널이 어느 위치에 있는 실행할 수 있게 만드세요.
+> 만약 webdev 명령어를 실행하는데 문제가 생겼다면 대신 다음 명령어를 사용하세요.
+>
+> flutter pub global run webdev [command].
+
+만약 webdev 명령어를 수행했을 때 dart 명령어를 수행하지 못한다면 dart sdk 위치를 path에 등록해주면 됩니다.
+flutter 내부에서 다운로드해놓은 dart-sdk의 위치는 다음과 같습니다.
+
+```bash
+# 윈도우
+flutter\bin\cache\dart-sdk
+
+# 리눅스
+flutter/bin/cache/dart-sdk
+```
+
+### hello_world 예제 실행하기
+`flutter_web` repository를 정상적으로 clone 하셨다면 다음의 위치에 hello_world 예제가 있을겁니다.
+hello_world가 flutter_web에 의존성이 있기 때문에 다른 위치로 복사하면 빌드가 제대로 되지 않습니다.
+
+```bash
+cd dev/hello_world
+```
+
+그리고 패키지들을 업데이트합니다.
+```bash
+$ flutter pub upgrade
+! flutter_web 0.0.0 from path ..\..\packages\flutter_web
+! flutter_web_ui 0.0.0 from path ..\..\packages\flutter_web_ui
+Running "flutter pub upgrade" in hello_world...                    59.9s
+```
+
+위와 같이 나온다면 성공한 것이며 실행할 수 있습니다.
+빌드를 수행하고 로컬에 배포해봅시다.
+
+```bash
+$ webdev serve
+[INFO] Building new asset graph completed, took 4.1s
+[INFO] Checking for unexpected pre-existing outputs. completed, took 2ms
+[INFO] Serving `web` on http://127.0.0.1:8080
+[INFO] Running build completed, took 47.7s
+[INFO] Caching finalized dependency graph completed, took 214ms
+[INFO] Succeeded after 47.9s with 557 outputs (3260 actions)
+[INFO] --------------------------------------------------------------------
+```
+
+이제 <http://localhost:8080>을 열어서 확인해보면 왼쪽 상단에 `Hello World`가 빨간색 텍스트로 표시됩니다.
+
+![](images/flutter_web_hello_world.png)
