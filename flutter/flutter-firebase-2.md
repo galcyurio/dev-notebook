@@ -107,8 +107,5 @@ _firebaseMessaging.configure(
  ## iOS integration
  https://pub.dev/packages/firebase_messaging#ios-integration
 
-## 테스트 해보기
-
-
 ## 참고 문서
 - https://pub.dev/packages/firebase_messaging
