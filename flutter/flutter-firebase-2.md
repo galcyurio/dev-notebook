@@ -104,8 +104,8 @@ _firebaseMessaging.configure(
 );
 ```
 
- ## iOS integration
- https://pub.dev/packages/firebase_messaging#ios-integration
+## iOS integration
+https://pub.dev/packages/firebase_messaging#ios-integration
 
 ## 참고 문서
 - https://pub.dev/packages/firebase_messaging
