@@ -5,7 +5,7 @@
 
 먼저 콜백 함수를 사용하는 2가지 경우를 확인해보겠습니다.
 
-## 1. 함수가 콜백함수를 등록할 수 있는 Future 타입을 반환하는 경우
+## 1. 콜백함수를 등록할 수 있는 Future 타입을 반환하는 경우
 > 이 글에서의 `Future 타입`은 편의상 CompletableFuture와 같은 Future 타입을 포함해서 RxJava의 `Observable`이나 Retrofit의 `Call`과 같은 타입을 포함합니다.
 
 코루틴을 적용하지 않았을 때의 코드를 먼저 살펴보겠습니다.
@@ -80,8 +80,65 @@ fun main() = runBlocking {
 
 ## 2. 함수의 매개변수로 콜백함수를 받는 경우
 
-TODO
+Future 타입을 반환하면 확장함수 하나로 끝낼 수 있지만 모든 코드가 그렇게 쉽게 끝나지는 않습니다.
+이번에는 Future 타입을 반환하지 않고 매개변수로 콜백 함수를 넣어주어야 하는 경우에 대해 알아보겠습니다.
 
-## 3. suspend 함수를 매개변수로 받아서 Future 타입을 반환하는 경우
+```kotlin
+fun requestUsers(
+    onSuccess: (String) -> Unit,
+    onFailure: (Exception) -> Unit
+) {
+    val client = OkHttpClient()
+    val request = Request.Builder()
+        .get()
+        .url("https://api.github.com/users")
+        .build()
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            onFailure(e)
+        }
 
-TODO
+        override fun onResponse(call: Call, response: Response) {
+            if (!response.isSuccessful) {
+                onFailure(IllegalStateException("request failed"))
+                return
+            }
+
+            val body = response.body?.string()
+            if (body == null) {
+                onFailure(IllegalStateException("null response body"))
+            } else {
+                onSuccess(body)
+            }
+        }
+    })
+}
+
+fun main() {
+    requestUsers(
+        onSuccess = { /* 성공 처리 */ println(it) },
+        onFailure = { /* 실패 처리 */ }
+    )
+}
+```
+
+이런 경우에도 마찬가지로 `suspendCoroutine()` 함수를 사용하는 새로운 함수를 만들면 됩니다.
+
+```kotlin
+private suspend fun requestUsersSuspend(): String? = suspendCoroutine { continuation ->
+    requestUsers(
+        onSuccess = { continuation.resume(it) },
+        onFailure = { continuation.resume(null) }
+    )
+}
+
+private fun main() = runBlocking {
+    val users = requestUsersSuspend()
+    println(users)
+}
+```
+
+`onFailure` 일 때는 null을 반환하고 `onSuccess`일 때는 결과를 반환하도록 만들었습니다.
+만약 실패원인에 따라서 다른 예외처리를 해주어야 하는 경우는 enum class를 반환한다던가 `resumeWithException()`을 사용하고 `try catch` 문으로 예외처리를 해줄 수도 있습니다.
+
+
